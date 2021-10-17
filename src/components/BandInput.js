@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 class BandInput extends Component {
   state = {
     name: ''
@@ -7,30 +6,30 @@ class BandInput extends Component {
 
   handleOnChange = (event) => {
     this.setState({
-      name: event.target.value
-    })
+      bandName: event.target.value,
+    });
   }
 
   handleOnSubmit = (event) => {
     event.preventDefault();
-    this.props.addBand(this.state);
-    this.setState({ name: '' })
+    this.props.addBand(this.state.bandName);
+    this.setState({ bandName: '', });
   }
 
   render() {
     return(
       <div>
-        <form onSubmit={this.handleOnSubmit}>
-          Enter a Band:
+        <form onSubmit={(event) => this.handleOnSubmit(event)}>
           <input 
             type="text"
-            onChange={this.handleOnChange}
-            value={this.state.name}
+            value={this.state.bandName}
+            onChange={(event) => this.handleOnChange(event)}
             />
+            <input type="submit" />
         </form>
       </div>
-    )
+    );
   }
-}
+};
 
 export default BandInput;
